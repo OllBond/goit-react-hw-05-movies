@@ -1,0 +1,8 @@
+.wrapper {
+  display: flex;
+}
+.link {
+  display: inline-block;
+  padding: 10px 15px;
+  text-decoration: none;
+}
