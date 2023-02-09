@@ -1,7 +1,10 @@
+import MovieList from 'modules/MoviesList/MovieList';
+import css from '../HomePage/homePage.module.css';
 const HomePage = () => {
   return (
     <div className="container">
-      <h1>Trending today</h1>
+      <h2 className={css.titleTrending}>Trending today</h2>
+      <MovieList />
     </div>
   );
 };
