@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import items from './items';
 import css from './menu.module.css';
 
 // перевіряє чи співпадає адреса з тією на яку йде посилання to=''
@@ -7,21 +8,13 @@ const getClassName = ({ isActive }) => {
   return className;
 };
 const Menu = () => {
-  return (
-    <div className={css.wrapper}>
-      <ul className={css.menu}>
-        <li>
-          <NavLink className={getClassName} to="/">
-            Home
-          </NavLink>
-        </li>
-        <li>
-          <NavLink className={getClassName} to="/movies">
-            Movies
-          </NavLink>
-        </li>
-      </ul>
-    </div>
-  );
+  const elements = items.map(({ text, link }) => (
+    <li>
+      <NavLink className={css.link} to={link}>
+        {text}
+      </NavLink>
+    </li>
+  ));
+  return <ul className={css.menu}>{elements}</ul>;
 };
 export default Menu;

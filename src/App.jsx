@@ -1,4 +1,5 @@
 import { Route, Routes } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import Menu from './modules/Menu/Menu';
 import HomePage from './pages/HomePage/HomePage';
 import MoviesPage from './pages/MoviesPage/MoviesPage';
@@ -7,7 +8,7 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import css from './shared/styles/styles.css';
 export const App = () => {
   return (
-    <div>
+    <BrowserRouter>
       <Menu />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -15,6 +16,6 @@ export const App = () => {
         <Route path="/movies/:movieId" element={<MovieDetailsPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </div>
+    </BrowserRouter>
   );
 };
