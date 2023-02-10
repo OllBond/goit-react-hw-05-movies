@@ -18,4 +18,8 @@ export const getPopularMovie = async page => {
   );
   return data;
 };
-//`${BASE_URL}/trending/movie/day?api_key=${API_KEY}&page=${this.page}`
+
+export const getDetailsMovie = async movieId => {
+  const { data } = await instance.get(`/movie/${movieId}`);
+  return data;
+};
