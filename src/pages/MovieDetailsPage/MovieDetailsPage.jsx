@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
 import { getDetailsMovie } from 'shared/styles/services/movie-api';
 import css from '../MovieDetailsPage/movieDetailsPage.module.css';
@@ -9,6 +9,11 @@ const MovieDetailsPage = () => {
   const [genres, setGenres] = useState([]);
   const [date, setDate] = useState('');
   const { movieId } = useParams();
+
+  // ф-я navigate примусово змінює адресу
+  // потрібна коли не знаю адресу переходу
+  const navigate = useNavigate();
+
   useEffect(() => {
     const fetchDetailsMovie = async () => {
       try {
@@ -25,6 +30,9 @@ const MovieDetailsPage = () => {
     fetchDetailsMovie();
   }, [movieId]);
 
+  // переміщення на одну сторінку назад
+  const goBack = () => navigate(-1);
+
   const elements = genres.map(({ name, id }) => (
     <li key={id} className={css.genresItems}>
       {name}
@@ -34,7 +42,7 @@ const MovieDetailsPage = () => {
   const { poster_path, original_title, overview, popularity } = movie;
   return (
     <>
-      <button className={css.btnGoBack} type="button">
+      <button className={css.btnGoBack} onClick={goBack} type="button">
         <HiArrowNarrowLeft /> Go back
       </button>
       <div className={css.wrapperOneFilm}>
