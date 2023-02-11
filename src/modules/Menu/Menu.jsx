@@ -7,8 +7,8 @@ const getClassName = ({ isActive }) => {
   return className;
 };
 const Menu = () => {
-  const elements = items.map(({ text, link }) => (
-    <li>
+  const elements = items.map(({ id, text, link }) => (
+    <li key={id}>
       <NavLink className={getClassName} to={link}>
         {text}
       </NavLink>

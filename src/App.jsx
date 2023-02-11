@@ -5,10 +5,10 @@ import HomePage from './pages/HomePage/HomePage';
 import MoviesPage from './pages/MoviesPage/MoviesPage';
 import MovieDetailsPage from './pages/MovieDetailsPage/MovieDetailsPage';
 import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
-// import css from './shared/styles/styles.css';
+import css from './shared/styles/styles.css';
 export const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter className={css.styles}>
       <Menu />
       <Routes>
         <Route path="/" element={<HomePage />} />
