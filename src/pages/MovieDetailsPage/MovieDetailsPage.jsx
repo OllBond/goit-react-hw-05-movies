@@ -5,7 +5,6 @@ import { getDetailsMovie } from 'shared/styles/services/movie-api';
 const MovieDetailsPage = () => {
   const [movie, setMovies] = useState({});
   // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(null);
   const [genres, setGenres] = useState([]);
   const [date, setDate] = useState('');
   const { movieId } = useParams();
@@ -18,12 +17,9 @@ const MovieDetailsPage = () => {
         setMovies(result);
         setGenres(result.genres);
         setDate(result.release_date);
-      } catch (error) {
-        // setError(error.message);
+      } catch ({ response }) {
+        console.log(response.data.message);
       }
-      // finally {
-      //   setLoading(false);
-      // }
     };
     fetchDetailsMovie();
   }, [movieId]);
