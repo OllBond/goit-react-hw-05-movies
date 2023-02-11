@@ -10,7 +10,7 @@ const getClassName = ({ isActive }) => {
 const Menu = () => {
   const elements = items.map(({ text, link }) => (
     <li>
-      <NavLink className={css.link} to={link}>
+      <NavLink className={getClassName} to={link}>
         {text}
       </NavLink>
     </li>
