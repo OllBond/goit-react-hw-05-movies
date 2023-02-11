@@ -14,6 +14,10 @@ const Menu = () => {
       </NavLink>
     </li>
   ));
-  return <ul className={css.menu}>{elements}</ul>;
+  return (
+    <div className={css.wrapper}>
+      <ul className={css.menu}>{elements}</ul>
+    </div>
+  );
 };
 export default Menu;
