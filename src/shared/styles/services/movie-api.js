@@ -23,3 +23,12 @@ export const getDetailsMovie = async movieId => {
   const { data } = await instance.get(`/movie/${movieId}`);
   return data;
 };
+
+export const searchMovie = async search => {
+  const { data } = await instance.get(`/search/movie`, {
+    params: {
+      search,
+    },
+  });
+  return data;
+};

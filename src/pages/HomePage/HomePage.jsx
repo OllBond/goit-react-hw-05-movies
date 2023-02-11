@@ -1,10 +1,10 @@
-import MovieList from 'modules/MoviesList/MovieList';
+import Movies from 'modules/Movies/Movies';
 import css from '../HomePage/homePage.module.css';
 const HomePage = () => {
   return (
     <div className="container">
       <h2 className={css.titleTrending}>Trending today</h2>
-      <MovieList />
+      <Movies />
     </div>
   );
 };

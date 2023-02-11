@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import MoviesList from 'modules/MoviesList/MoviesList';
 import { getPopularMovie } from 'shared/styles/services/movie-api';
-const MovieList = () => {
+
+const Movies = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -19,17 +20,13 @@ const MovieList = () => {
     };
     fetchPopularMovie();
   }, [setLoading, setMovies, setError]);
-  const elements = movies.map(({ id, title }) => (
-    <li key={id}>
-      <Link to={`/movies/${id}`}>{title}</Link>
-    </li>
-  ));
+
   return (
     <div>
-      <ul>{elements}</ul>
+      {movies.length > 0 && <MoviesList movies={movies} />}
       {loading && <p>...loading</p>}
       {error && <p>Movies load failed</p>}
     </div>
   );
 };
-export default MovieList;
+export default Movies;
