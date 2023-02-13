@@ -1,28 +1,36 @@
 import { useState } from 'react';
+import initialState from './initialState';
 
+import css from '../MoviesSearchForm/movieSearchForm.module.css';
 const MoviesSearchForm = ({ onSubmit }) => {
-  const [state, setState] = useState({
-    search: '',
-  });
+  const [state, setState] = useState({ ...initialState });
+
   const handleChange = ({ target }) => {
     const { name, value } = target;
-    setState({
-      ...state,
-      [name]: value,
+    setState(prevState => {
+      return { ...prevState, [name]: value };
     });
   };
   const handleSubmit = e => {
     e.preventDefault();
     onSubmit({ ...state });
-    setState({
-      search: '',
-    });
+    setState({ ...initialState });
   };
-  const { search } = state;
+  const { query } = state;
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="search" value={search} onChange={handleChange} required />
-      <button type="submit">Search</button>
+    <form className={css.form} onSubmit={handleSubmit}>
+      <input
+        className={css.input}
+        type="text"
+        name="query"
+        value={query}
+        onChange={handleChange}
+        placeholder="Search movies"
+        required
+      />
+      <button className={css.btnSearch} type="submit">
+        Search
+      </button>
     </form>
   );
 };

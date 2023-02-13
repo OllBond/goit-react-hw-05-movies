@@ -3,10 +3,11 @@ const instance = axios.create({
   baseURL: 'https://api.themoviedb.org/3',
   params: {
     api_key: '4a2018560b79424f21a897c5cf387007',
+    language: 'en-US',
   },
 });
 
-export const getPopularMovie = async page => {
+export const getPopularMovie = async (page = 1) => {
   const { data } = await instance.get(
     '/trending/movie/day',
     //об'єкт з налаштуваннями один з яких params: параметри запиту після ?
@@ -24,11 +25,12 @@ export const getDetailsMovie = async movieId => {
   return data;
 };
 
-export const searchMovie = async search => {
+export const searchMovie = async query => {
   const { data } = await instance.get(`/search/movie`, {
     params: {
-      search,
+      query,
     },
   });
-  return data;
+  // console.log(data.results);
+  return data.results;
 };

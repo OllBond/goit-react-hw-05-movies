@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { HiArrowNarrowLeft } from 'react-icons/hi';
-import { getDetailsMovie } from 'shared/styles/services/movie-api';
+import { getDetailsMovie } from 'shared/styles/services/movieApi';
 import css from '../MovieDetailsPage/movieDetailsPage.module.css';
 const MovieDetailsPage = () => {
   const [movie, setMovies] = useState({});

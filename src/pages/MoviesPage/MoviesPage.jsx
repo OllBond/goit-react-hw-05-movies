@@ -1,24 +1,31 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
+import { Notify } from 'notiflix';
+
 import MoviesSearchForm from 'modules/MoviesSearchForm/MoviesSearchForm';
 import MoviesList from 'modules/MoviesList/MoviesList';
-import { searchMovie } from 'shared/styles/services/movie-api';
+import { searchMovie } from 'shared/styles/services/movieApi';
 
 const MoviesPage = () => {
-  const [search, setSearch] = useState('');
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
+
   useEffect(() => {
-    if (!search) {
+    if (!query) {
       return;
     }
     const fetchSearchMovie = async () => {
       try {
         setLoading(true);
-        const data = await searchMovie(search);
+        const data = await searchMovie(query);
         console.log(data);
-        setMovies(prevMovies => [...prevMovies, ...data.results]);
+        data.length === 0
+          ? Notify.info('There are no movies for your request')
+          : setMovies(data);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -26,19 +33,23 @@ const MoviesPage = () => {
       }
     };
     fetchSearchMovie();
-  }, [search]);
+  }, [query]);
 
-  const onSearchMovie = ({ search }) => {
-    setSearch(search);
+  const onSearchMovie = ({ query }) => {
+    if (query.trim() === '') {
+      Notify.info('Enter name movie');
+    }
+    setMovies([]);
+    setSearchParams({ query });
   };
 
   return (
-    <div>
+    <>
       <MoviesSearchForm onSubmit={onSearchMovie} />
       {movies.length > 0 && <MoviesList movies={movies} />}
-      {loading && <p>...loading</p>}
-      {error && <p>Movies load failed</p>}
-    </div>
+      {error && <p>{error}</p>}
+      {loading && <p>...Load movie</p>}
+    </>
   );
 };
 export default MoviesPage;
