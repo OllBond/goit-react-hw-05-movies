@@ -2,16 +2,17 @@ import { useState, useEffect } from 'react';
 import MoviesList from 'modules/MoviesList/MoviesList';
 import { getPopularMovie } from 'shared/styles/services/movieApi';
 
-const Movies = () => {
+const TrendingMovies = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+
   useEffect(() => {
     const fetchPopularMovie = async () => {
       try {
         setLoading(true);
-        const data = await getPopularMovie();
-        setMovies(prevMovies => [...prevMovies, ...data.results]);
+        const result = await getPopularMovie();
+        setMovies(result);
       } catch (error) {
         setError(error.message);
       } finally {
@@ -29,4 +30,4 @@ const Movies = () => {
     </div>
   );
 };
-export default Movies;
+export default TrendingMovies;

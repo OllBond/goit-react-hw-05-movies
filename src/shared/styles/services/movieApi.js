@@ -9,7 +9,7 @@ const instance = axios.create({
 
 export const getPopularMovie = async (page = 1) => {
   const { data } = await instance.get(
-    '/trending/movie/day',
+    '/trending/movie/day?',
     //об'єкт з налаштуваннями один з яких params: параметри запиту після ?
     {
       params: {
@@ -17,7 +17,7 @@ export const getPopularMovie = async (page = 1) => {
       },
     }
   );
-  return data;
+  return data.results;
 };
 
 export const getDetailsMovie = async movieId => {
