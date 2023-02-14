@@ -26,3 +26,14 @@
 .genresItems {
   margin-right: 10px;
 }
+.wrapperMoreInfo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  padding: 10px;
+  border-top: 3px solid #ececec;
+  border-bottom: 3px solid #ececec;
+}
+.details {
+  margin-bottom: 10px;
+}

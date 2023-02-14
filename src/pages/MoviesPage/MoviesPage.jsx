@@ -10,7 +10,7 @@ const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  // searchParams - це параметр пошуку після ?
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
 
@@ -40,6 +40,7 @@ const MoviesPage = () => {
       Notify.info('Enter name movie');
     }
     setMovies([]);
+    // змінює адресу сторінки
     setSearchParams({ query });
   };
 
