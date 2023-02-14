@@ -4,7 +4,7 @@ import { Notify } from 'notiflix';
 
 import MoviesSearchForm from 'modules/MoviesSearchForm/MoviesSearchForm';
 import MoviesList from 'modules/MoviesList/MoviesList';
-import { searchMovie } from 'shared/styles/services/movieApi';
+import { getSearchMovie } from 'shared/styles/services/movieApi';
 
 const MoviesPage = () => {
   const [movies, setMovies] = useState([]);
@@ -21,7 +21,7 @@ const MoviesPage = () => {
     const fetchSearchMovie = async () => {
       try {
         setLoading(true);
-        const data = await searchMovie(query);
+        const data = await getSearchMovie(query);
         console.log(data);
         data.length === 0
           ? Notify.info('There are no movies for your request')

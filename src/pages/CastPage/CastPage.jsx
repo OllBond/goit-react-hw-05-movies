@@ -13,7 +13,7 @@ const CastPage = () => {
       try {
         setLoading(true);
         const result = await getCastMovie(movieId);
-        console.log(result);
+        // console.log(result);
         setMovies(result);
       } catch (error) {
         setError(error);

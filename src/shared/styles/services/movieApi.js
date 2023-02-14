@@ -25,13 +25,12 @@ export const getDetailsMovie = async movieId => {
   return data;
 };
 
-export const searchMovie = async query => {
+export const getSearchMovie = async query => {
   const { data } = await instance.get(`/search/movie`, {
     params: {
       query,
     },
   });
-  // console.log(data.results);
   return data.results;
 };
 
@@ -42,5 +41,6 @@ export const getCastMovie = async movieId => {
 
 export const getReviewsMovie = async movieId => {
   const { data } = await instance.get(`/movie/${movieId}/reviews`);
+  // console.log(data.results);
   return data.results;
 };
