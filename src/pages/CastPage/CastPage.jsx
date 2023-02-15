@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCastMovie } from 'shared/styles/services/movieApi';
-
+import PropTypes from 'prop-types';
 import css from '../CastPage/castPage.module.css';
 
 const CastPage = () => {
@@ -18,7 +18,7 @@ const CastPage = () => {
         // console.log(result);
         setMovies(result);
       } catch (error) {
-        setError(error);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -53,3 +53,14 @@ const CastPage = () => {
   );
 };
 export default CastPage;
+
+CastPage.defaultProps = {
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      character: PropTypes.string.isRequired,
+      original_name: PropTypes.string.isRequired,
+      profile_path: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
+};

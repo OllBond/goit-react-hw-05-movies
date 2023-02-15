@@ -22,7 +22,7 @@ const MoviesPage = () => {
       try {
         setLoading(true);
         const data = await getSearchMovie(query);
-        console.log(data);
+        // console.log(data);
         data.length === 0
           ? Notify.info('There are no movies for your request')
           : setMovies(data);

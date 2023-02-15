@@ -9,6 +9,8 @@ import {
 
 import { HiArrowNarrowLeft } from 'react-icons/hi';
 import { getDetailsMovie } from 'shared/styles/services/movieApi';
+import PropTypes from 'prop-types';
+
 import css from '../MovieDetailsPage/movieDetailsPage.module.css';
 
 const MovieDetailsPage = () => {
@@ -81,18 +83,32 @@ const MovieDetailsPage = () => {
           </div>
         </div>
       )}
-
       <div className={css.wrapperMoreInfo}>
         <p>Additional information</p>
-        <Link className={css.details} to="cast" state={{ from }}>
-          Cast
-        </Link>
-        <Link to="reviews" state={{ from }}>
-          Reviews
-        </Link>
+        <ul className={css.additionalList}>
+          <li>
+            <Link className={css.details} to="cast" state={{ from }}>
+              Cast
+            </Link>
+          </li>
+          <li>
+            <Link to="reviews" state={{ from }}>
+              Reviews
+            </Link>
+          </li>
+        </ul>
         <Outlet />
       </div>
     </>
   );
 };
 export default MovieDetailsPage;
+
+MovieDetailsPage.defaultProps = {
+  genres: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
+    }).isRequired
+  ).isRequired,
+};

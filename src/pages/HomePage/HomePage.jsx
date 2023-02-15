@@ -1,5 +1,6 @@
 import Movies from 'modules/TrendingMovies/TrendingMovies';
 import css from '../HomePage/homePage.module.css';
+
 const HomePage = () => {
   return (
     <div className="container">
