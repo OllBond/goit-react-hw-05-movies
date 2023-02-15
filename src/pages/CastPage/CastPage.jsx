@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getCastMovie } from 'shared/styles/services/movieApi';
 
+import css from '../CastPage/castPage.module.css';
+
 const CastPage = () => {
   const [movies, setMovies] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -43,7 +45,7 @@ const CastPage = () => {
       {loading && <p>...loading</p>}
       {error && <p>Error</p>}
       {movies && (
-        <div>
+        <div className={css.castWrapper}>
           <ul>{elements}</ul>
         </div>
       )}

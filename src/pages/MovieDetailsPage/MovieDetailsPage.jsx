@@ -1,8 +1,16 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, Link, Outlet } from 'react-router-dom';
+import {
+  useParams,
+  useNavigate,
+  Link,
+  Outlet,
+  useLocation,
+} from 'react-router-dom';
+
 import { HiArrowNarrowLeft } from 'react-icons/hi';
 import { getDetailsMovie } from 'shared/styles/services/movieApi';
 import css from '../MovieDetailsPage/movieDetailsPage.module.css';
+
 const MovieDetailsPage = () => {
   const [movies, setMovies] = useState({});
   const [loading, setLoading] = useState(false);
@@ -12,8 +20,11 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
 
   // ф-я navigate примусово змінює адресу
-  // потрібна коли не знаю адресу переходу
   const navigate = useNavigate();
+
+  const location = useLocation();
+  //  якщо state не null  і там є поле from - записуємо його - інакше головна сторінка
+  const from = location.state?.from || '/';
 
   useEffect(() => {
     const fetchDetailsMovie = async () => {
@@ -32,8 +43,7 @@ const MovieDetailsPage = () => {
     fetchDetailsMovie();
   }, [movieId]);
 
-  // переміщення на одну сторінку назад
-  const goBack = () => navigate(-1);
+  const goBack = () => navigate(from);
 
   const elements = genres.map(({ name, id }) => (
     <li key={id} className={css.genresItems}>
@@ -42,6 +52,7 @@ const MovieDetailsPage = () => {
   ));
   const year = new Date(date).getFullYear();
   const { poster_path, original_title, overview } = movies;
+
   return (
     <>
       <button className={css.btnGoBack} onClick={goBack} type="button">
@@ -73,10 +84,12 @@ const MovieDetailsPage = () => {
 
       <div className={css.wrapperMoreInfo}>
         <p>Additional information</p>
-        <Link className={css.details} to="cast">
+        <Link className={css.details} to="cast" state={{ from }}>
           Cast
         </Link>
-        <Link to="reviews">Reviews</Link>
+        <Link to="reviews" state={{ from }}>
+          Reviews
+        </Link>
         <Outlet />
       </div>
     </>
