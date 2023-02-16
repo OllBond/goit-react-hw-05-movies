@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import css from '../MoviesList/moviesList.module.css';
 
 const MoviesList = ({ movies }) => {
-  // const navigate = useNavigate();
-
   const location = useLocation();
-  // const from = location.state?.from || '/movie';
 
   const elements = movies.map(({ id, title }) => (
     <li key={id}>
@@ -16,7 +13,7 @@ const MoviesList = ({ movies }) => {
       </Link>
     </li>
   ));
-  return <ul className={css.moviesList}>{elements}</ul>;
+  return <>{movies && <ul className={css.moviesList}>{elements}</ul>}</>;
 };
 export default MoviesList;
 

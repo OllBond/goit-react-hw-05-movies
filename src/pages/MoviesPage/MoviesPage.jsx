@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Notify } from 'notiflix';
+import Loader from 'shared/styles/Loader/loader';
 
 import MoviesSearchForm from 'modules/MoviesSearchForm/MoviesSearchForm';
 import MoviesList from 'modules/MoviesList/MoviesList';
@@ -49,7 +50,7 @@ const MoviesPage = () => {
       <MoviesSearchForm onSubmit={onSearchMovie} />
       {movies.length > 0 && <MoviesList movies={movies} />}
       {error && <p>{error}</p>}
-      {loading && <p>...Load movie</p>}
+      {loading && <Loader />}
     </>
   );
 };

@@ -6,8 +6,9 @@ import {
   Outlet,
   useLocation,
 } from 'react-router-dom';
-
 import { HiArrowNarrowLeft } from 'react-icons/hi';
+import Loader from 'shared/styles/Loader/loader';
+
 import { getDetailsMovie } from 'shared/styles/services/movieApi';
 import PropTypes from 'prop-types';
 
@@ -60,7 +61,7 @@ const MovieDetailsPage = () => {
       <button className={css.btnGoBack} onClick={goBack} type="button">
         <HiArrowNarrowLeft /> Go back
       </button>
-      {loading && <p>...loading</p>}
+      {loading && <Loader />}
       {error && <p>Error</p>}
       {movies && (
         <div className={css.wrapperOneFilm}>
