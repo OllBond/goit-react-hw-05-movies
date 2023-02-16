@@ -1,4 +1,3 @@
-import { Notify } from 'notiflix';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -18,11 +17,9 @@ const ReviewsPage = () => {
         setLoading(true);
         const results = await getReviewsMovie(movieId);
         // console.log(results);
-        results.length === 0 && !error
-          ? Notify.info('We don`t have any reviews for this movie')
-          : setMovies(results);
-      } catch (error) {
-        setError(error.message);
+        setMovies(results);
+      } catch ({ response }) {
+        setError(response.data.message);
       } finally {
         setLoading(false);
       }
@@ -41,10 +38,13 @@ const ReviewsPage = () => {
     <>
       {loading && <p>...loading</p>}
       {error && <p>Error</p>}
-      {movies.length > 0 && (
+      {movies.length !== 0 && (
         <div>
           <ul>{elements}</ul>
         </div>
+      )}
+      {movies.length === 0 && (
+        <div>We don't have any reviews for this movie</div>
       )}
     </>
   );

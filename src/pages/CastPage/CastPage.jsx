@@ -17,8 +17,8 @@ const CastPage = () => {
         const result = await getCastMovie(movieId);
         // console.log(result);
         setMovies(result);
-      } catch (error) {
-        setError(error.message);
+      } catch ({ response }) {
+        setError(response.data.message);
       } finally {
         setLoading(false);
       }
@@ -31,8 +31,12 @@ const CastPage = () => {
       <li key={id}>
         <img
           width="100"
-          height="150"
-          src={`https://image.tmdb.org/t/p/w300/${profile_path}`}
+          height="130"
+          src={
+            profile_path
+              ? 'https://image.tmdb.org/t/p/w500' + profile_path
+              : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+          }
           alt={original_name}
         />
         <p>{original_name}</p>
