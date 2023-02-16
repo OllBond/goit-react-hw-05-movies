@@ -19,9 +19,11 @@ const Menu = () => {
     </li>
   ));
   return (
-    <div className={css.wrapper}>
-      <ul className={css.menu}>{elements}</ul>
-    </div>
+    <nav>
+      <div className={css.wrapper}>
+        <ul className={css.menu}>{elements}</ul>
+      </div>
+    </nav>
   );
 };
 export default Menu;
