@@ -66,7 +66,11 @@ const MovieDetailsPage = () => {
       {movies && (
         <div className={css.wrapperOneFilm}>
           <img
-            src={`https://image.tmdb.org/t/p/w300/${poster_path}`}
+            src={
+              poster_path
+                ? `https://image.tmdb.org/t/p/w300/` + poster_path
+                : 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'
+            }
             width="300"
             height="450"
             alt={original_title}
