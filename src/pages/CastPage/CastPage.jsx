@@ -53,6 +53,9 @@ const CastPage = () => {
           <ul>{elements}</ul>
         </div>
       )}
+      {movies.length === 0 && (
+        <div>We don't have any actors for this movie</div>
+      )}
     </>
   );
 };
